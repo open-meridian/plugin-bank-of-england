@@ -1,0 +1,15 @@
+meridian-bank-of-england
+Copyright 2026 Societal Lab Inc.
+
+Licensed under the Apache License, Version 2.0. See LICENSE.
+
+The data this plugin reads are the Bank of England's, published on its
+website: its Statistical Interactive Database and its yield curve files.
+Reproduction of the Database's data is subject to the UK Open Government
+Licence; SONIA and SONIA Compounded Index data are licensed under the Open
+Government Licence v3.0 and copyright the Governor and Company of the Bank
+of England. "Bank of England" and "SONIA" are registered trade marks of the
+Bank of England. Selected exchange rate data are excluded from that licence,
+reproduced by the Bank under licence from third parties; the yield curves'
+inputs are Bloomberg Finance L.P.'s and Tradeweb's.
+This project is not affiliated with or endorsed by the Bank of England.

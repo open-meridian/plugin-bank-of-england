@@ -1,0 +1,4 @@
+miss|bank-of-england|5
+served|bank-of-england:boe_fx|1|26|GBP|meridian.v1.Price.basis,meridian.v1.Price.benchmark_instrument_id,meridian.v1.Price.confidence,meridian.v1.Price.kind,meridian.v1.Price.meta,meridian.v1.Price.price,meridian.v1.Price.spread_bps,meridian.v1.Price.yield|reader
+want|bank-of-england:boe_fx|answered|GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP,GBP|0
+want|bank-of-england:boe_fx|asked|GBP|0
