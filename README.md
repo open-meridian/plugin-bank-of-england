@@ -5,7 +5,7 @@ an Open Meridian plugin that puts SONIA, its compounded index and Bank Rate,
 the Bank's gilt and OIS spot curves, and its daily spot exchange rates
 against sterling into a deployment's lake. It reads the Bank's Statistical
 Interactive Database and its yield curve files, and holds the `data` role, a
-data plugin. This is release 0.1.0, a draft for the product owner. How to
+data plugin. This is release 0.1.1, a draft for the product owner. How to
 set it up and use it is in [docs/](docs/README.md).
 
 It is built on the SDK it pins, `open-meridian==0.36.0` (contract 30).
@@ -84,4 +84,6 @@ This project is not affiliated with or endorsed by the Bank of England.
 ## Licence
 
 Apache-2.0 (LICENSE, NOTICE). The Bank's answers under
-`src/bank_of_england/responses/` are as received on 2026-11-19.
+`src/bank_of_england/responses/` were recorded on 2026-11-19: the rates as
+received; the exchange rates and the yield curves (third parties' data
+under ruling 132) synthetic.

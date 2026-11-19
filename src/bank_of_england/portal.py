@@ -21,9 +21,10 @@ excessive use, and which state no figure. The plugin asks one request at a
 time, at most one every two seconds, says who it is in its User-Agent, and
 checks the rates' current range every hour.
 
-`SyntheticPortal` answers from the real responses committed under
-responses/ (responses/index.json), recorded on 2026-11-19: the database's
-rates and exchange rates from 3 August to 19 November 2026, and the latest
+`SyntheticPortal` answers from the responses committed under responses/
+(responses/index.json), recorded on 2026-11-19 (the exchange rates' and the
+curves' values synthetic, the rates' as received): the database's rates
+and exchange rates from 3 August to 19 November 2026, and the latest
 yield curve file, 2 to 18 November 2026. A range is answered with the
 recorded values in it, the curve file whole, and an archive not at all (it
 is not recorded: some 50 MB); the rates' current range ends on its

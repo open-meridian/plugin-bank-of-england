@@ -4,8 +4,9 @@ The Bank of England's data need no key and no choice: the plugin reads its
 public website. In the data role's order (spec/plugin-pages-follow-their-
 role) it declares no `environment` and no credential ("No key needed"), only
 the role's sample data, a developer's setting (`meridian.sample_data`):
-the real answers committed under responses/ in place of the website, for the
-e2e and for trying the plugin offline.
+the answers committed under responses/ (the exchange rates' and the curves'
+values synthetic) in place of the website, for the e2e and for trying the
+plugin offline.
 
 The SDK declares the storage's two settings from the declaration's kind
 (declaration.py): `responses_window_days` and `responses_past_window`.

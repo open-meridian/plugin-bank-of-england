@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.1
+
+The product owner's item 197 (2026-11-19): no third party's licensed data
+in a public repository's sample recordings.
+
+- **Sample data:** the recorded exchange rates (all 27 series, excluded
+  from the Open Government Licence) and the yield curve workbooks (all four,
+  their inputs Bloomberg's and Tradeweb's) hold synthetic values of the same
+  shape: dates, headers, empty cells and every workbook part as received.
+  SONIA, its index and Bank Rate are as received. 0.1.0's recordings stay
+  in this repository's history.
+- **A range wanted ends the day before its end:** the last nanosecond
+  before a London midnight was read as the next day (float division), so a
+  one-day range asked two; now whole seconds, as plugin-japan-mof.
+
 ## 0.1.0
 
 On open-meridian 0.36.0, contract 30, on core aae501d's harness. The

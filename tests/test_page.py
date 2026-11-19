@@ -40,7 +40,7 @@ def test_each_page_is_managed_alone(client: PageClient) -> None:
         (DATASETS_PAGE, "write"): 403,
         (DATASETS_PAGE, "read"): 403,
     }
-    client.assert_no_account_data("1.3148", "122.08507868", "3.984", "4.804483138357444")
+    client.assert_no_account_data("1.2697", "122.08507868", "3.984", "3.650162906699258")
 
 
 def test_connection_and_its_sources(client: PageClient) -> None:

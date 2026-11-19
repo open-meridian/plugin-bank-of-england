@@ -8,7 +8,9 @@ the exchange rates only when the lake asks for a day.
 
 Its settings: the **Raw responses window** and **past the window** (the
 SDK's), and on a deployment installed for development, **Sample data**: the
-Bank's answers recorded on 19 November 2026, committed with the plugin.
+Bank's answers recorded on 19 November 2026, committed with the plugin. Their
+exchange rates and curves hold invented values of the same shape, not the
+Bank's own.
 
 ## Its datasets
 

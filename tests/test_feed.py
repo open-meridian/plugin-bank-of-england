@@ -93,12 +93,12 @@ def test_a_curve_wanted_its_spot_points_continuously_compounded(tmp_path: Path) 
         r for r in ois.values() if (r.tenor.count, r.tenor.unit) == (10, ops.TENOR_UNIT_YEAR)
     )
     assert (
-        ten.kind == ops.RATE_KIND_ZERO and str(as_decimal(ten.value.value)) == "4.804483138357444"
+        ten.kind == ops.RATE_KIND_ZERO and str(as_decimal(ten.value.value)) == "3.650162906699258"
     )
     assert ten.convention.compounding == ops.COMPOUNDING_CONTINUOUS
     assert ten.meta.source.dataset == CURVES and not ten.meta.HasField("raw")
     forty = [r for r in gilt if (r.tenor.count, r.tenor.unit) == (40, ops.TENOR_UNIT_YEAR)]
-    assert str(as_decimal(forty[0].value.value)) == "5.3963056778704432"
+    assert str(as_decimal(forty[0].value.value)) == "4.741337479883825"
     against = {
         b.want_id for b in plugin.on("RecordRates") if b.rates[0].meta.source.dataset == CURVES
     }
@@ -111,7 +111,7 @@ def test_the_exchange_rates_wanted_sterlings_price_never_inverted(tmp_path: Path
     assert len(prices) == 26  # the lev states none
     dollar = next(p for p in prices if p.meta.row_key == "GBPUSD:2026-11-18")
     assert dollar.meta.subjects[0].entity_id == GBP and dollar.kind == ops.PRICE_KIND_CLOSE
-    assert str(as_decimal(dollar.price.amount)) == "1.3148" and dollar.price.currency_code == "USD"
+    assert str(as_decimal(dollar.price.amount)) == "1.2697" and dollar.price.currency_code == "USD"
     assert dollar.meta.source.dataset == FX and not dollar.meta.HasField("raw")
 
 
