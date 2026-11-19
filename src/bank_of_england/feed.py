@@ -492,9 +492,11 @@ class Feed(data.Role):
         if want.business_date:
             return [date.fromisoformat(want.business_date)], False
         if want.valid_from_ns or want.valid_until_ns:
-            start = datetime.fromtimestamp(want.valid_from_ns / 1e9, LONDON).date()
+            # Whole seconds, so the last nanosecond before a midnight is
+            # that day's, never rounded into the next.
+            start = datetime.fromtimestamp(want.valid_from_ns // 10**9, LONDON).date()
             until = want.valid_until_ns - 1 if want.valid_until_ns else _ns(self.now())
-            end = datetime.fromtimestamp(until / 1e9, LONDON).date()
+            end = datetime.fromtimestamp(until // 10**9, LONDON).date()
             return [start + timedelta(days=n) for n in range((end - start).days + 1)][
                 -MOST_DAYS:
             ], False

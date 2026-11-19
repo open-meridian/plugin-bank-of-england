@@ -5,7 +5,7 @@ from __future__ import annotations
 import asyncio
 import io
 import zipfile
-from datetime import date
+from datetime import UTC, date, datetime
 from pathlib import Path
 
 from meridian.operations import as_decimal
@@ -14,6 +14,7 @@ from meridian.suites import Recorder
 
 from bank_of_england.answers import covers, parse_curves
 from bank_of_england.portal import ARCHIVES, Fetched, SyntheticPortal
+from bank_of_england.portal import RATES as RATES_SOURCE
 from bank_of_england.series import months_of, tenor_of
 
 from conftest import AT, CURVES, FX, GBP, HELD, INSTANCE, feed, fx_want, resolving, want
@@ -151,6 +152,14 @@ def test_a_day_before_the_latest_file_read_from_the_archive(tmp_path: Path) -> N
     read, key = asyncio.run(work.read("curves", date(2026, 10, 30), date(2026, 11, 3)))
     assert key == "" and sorted(set(ARCHIVES.values())) == sorted(portal.asked[-2:])
     assert read.days == [date(2026, 11, 2), date(2026, 11, 3)] and not read.unread
+
+
+def test_a_range_wanted_ends_the_day_before_its_end(tmp_path: Path) -> None:
+    # 17 November, London midnight to midnight (GMT then): the last
+    # nanosecond is the 17th's, never rounded into the 18th.
+    start = int(datetime(2026, 11, 17, tzinfo=UTC).timestamp()) * 10**9
+    asked = ops.ObservationsWantedEvent(valid_from_ns=start, valid_until_ns=start + 86_400 * 10**9)
+    assert feed(tmp_path)._days(RATES_SOURCE, asked) == ([date(2026, 11, 17)], False)
 
 
 def test_tenors_and_archive_years() -> None:
