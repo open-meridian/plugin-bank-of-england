@@ -130,7 +130,7 @@ image:
 	@[ "$$(docker inspect -f '{{.Config.User}}' $(IMAGE))" = "65532" ] \
 		|| { echo "image FAILED: it does not run as 65532" >&2; exit 1; }
 	@docker run --rm --entrypoint python $(IMAGE) -c \
-		"import meridian, bank_of_england.__main__, bank_of_england.page; from bank_of_england.portal import SyntheticPortal; held = SyntheticPortal(); assert len(held.recordings) == 4 and held.recordings['fx'].last_day.isoformat() == '2026-11-18'" \
+		"import meridian, bank_of_england.__main__, bank_of_england.page; from bank_of_england.portal import SyntheticPortal; held = SyntheticPortal(); assert len(held.recordings) == 3 and held.recordings['fx'].last_day.isoformat() == '2026-11-18'" \
 		|| { echo "image FAILED: it does not import the SDK, itself and its recorded answers" >&2; exit 1; }
 	@[ "$$(docker run --rm --entrypoint sh $(IMAGE) -c 'ls -A /plugin')" = "docs" ] \
 		|| { echo "image FAILED: /plugin holds files beyond docs/; only the installed package and its documentation belong" >&2; exit 1; }

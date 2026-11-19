@@ -212,7 +212,7 @@ class SyntheticPortal:
         source = source_of(path)
         recording = self.recordings.get(source)
         if recording is None:
-            return Fetched(path, 404, b"<html>Not found</html>", self._now())
+            return Fetched(path, 404, b"Not found", self._now())
         if source == CURVES:
             return Fetched(path, 200, recording.body, self._now(), recording.said)
         query = dict(p.partition("=")[::2] for p in path.partition("?")[2].split("&"))
@@ -220,7 +220,7 @@ class SyntheticPortal:
             start = datetime.strptime(query.get("Datefrom", ""), "%d/%b/%Y").date()
             end = datetime.strptime(query.get("Dateto", ""), "%d/%b/%Y").date()
         except ValueError:
-            return Fetched(path, 400, b"<html>Bad date</html>", self._now())
+            return Fetched(path, 400, b"Bad date", self._now())
         body = _within(recording.body.decode(), start, end)
         return Fetched(path, 200, body.encode(), self._now(), recording.said)
 
