@@ -109,6 +109,18 @@ def store_lake():
     return compose("run", "--rm", "-T", "store", "lake").stdout
 
 
+def answered(lines, dataset, subject):
+    """Whether `store lake` holds a want of `dataset` answered for `subject`
+    alone. The line names a subject for each row of the answer, so sterling,
+    priced in each currency, is named once a currency."""
+    for line in lines.splitlines():
+        parts = line.split("|")
+        subjects = set(parts[3].split(",")) if len(parts) > 3 else set()
+        if parts[:3] == ["want", dataset, "answered"] and subjects == {subject}:
+            return True
+    return False
+
+
 def named(lines, codes):
     """`store lake` with each instrument's ID, drawn per run, as its code."""
     out = []
@@ -118,6 +130,8 @@ def named(lines, codes):
             parts[6] = codes.get(parts[6], parts[6])
         elif parts[0] == "want" and len(parts) > 3:
             parts[3] = ",".join(codes.get(s, s) for s in parts[3].split(","))
+        elif parts[0] == "served" and len(parts) > 4:
+            parts[4] = ",".join(codes.get(s, s) for s in parts[4].split(","))
         out.append("|".join(parts))
     return "\n".join(sorted(out)) + "\n"
 
@@ -183,7 +197,7 @@ def run():
         runner("entitle", "--instance", "reader", dataset, "note=The e2e's reader reads it.")
     runner("grant", "--instance", "reader", "--level", "read")
     page("reader", "read", f"/prices?subject={gbp}&date=2026-11-18&dataset={FX}&kind=close")
-    until(90, lambda: f"want|{FX}|answered|{gbp}|" in store_lake(),
+    until(90, lambda: answered(store_lake(), FX, gbp),
           "step 4, the want for sterling's prices of 18 November was not answered")
     usd = until(60, lambda: (lambda r: r if r.get("latest_day") == "2026-11-18" else None)(
         {r["code"]: r for r in call(read_datasets)["records"]}["USD"]),
