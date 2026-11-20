@@ -1,10 +1,5 @@
 # Changelog
 
-## 0.1.2
-
-SDK 0.37.0: waits for a lost sidecar; its storage is read once registered,
-on an instance run as shards or with a standby pod the shard's own folder.
-
 ## 0.1.1
 
 The product owner's item 197 (2026-11-19): no third party's licensed data
@@ -19,6 +14,11 @@ in a public repository's sample recordings.
 - **A range wanted ends the day before its end:** the last nanosecond
   before a London midnight was read as the next day (float division), so a
   one-day range asked two; now whole seconds, as plugin-japan-mof.
+
+SDK 0.37.0: waits for a lost sidecar; its storage is read once registered,
+on an instance run as shards or with a standby pod the shard's own folder.
+
+SDK 0.37.1: a raw record kept from two threads at once waits instead of being dropped.
 
 ## 0.1.0
 
