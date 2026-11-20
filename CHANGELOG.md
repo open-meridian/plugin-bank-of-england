@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2
+
+SDK 0.37.0: waits for a lost sidecar; its storage is read once registered,
+on an instance run as shards or with a standby pod the shard's own folder.
+
 ## 0.1.1
 
 The product owner's item 197 (2026-11-19): no third party's licensed data
